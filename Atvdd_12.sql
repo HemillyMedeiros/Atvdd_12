@@ -29,3 +29,14 @@ def fn_transferir(codigo_cliente_remetente, codigo_conta_remetente, codigo_clien
         print("Cliente, conta remetente ou conta destinatário não encontrados.")
         return False
 
+-- Testando as funções com blocos anônimos:
+if __name__ == "__main__":
+    # Teste da função fn_consultar_saldo
+    saldo_conta = fn_consultar_saldo(1, 101)
+    if saldo_conta is not None:
+        print(f"Saldo da conta: {saldo_conta}")
+
+    # Teste da função fn_transferir
+    transferencia_sucesso = fn_transferir(1, 101, 2, 201, 300)
+    if transferencia_sucesso:
+        print("Transferência realizada com sucesso.")
