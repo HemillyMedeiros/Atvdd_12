@@ -11,3 +11,21 @@ def fn_consultar_saldo(codigo_cliente, codigo_conta):
     except KeyError:
         print("Cliente ou conta não encontrados.")
         return None
+
+-- Função para transferir dinheiro entre contas:
+def fn_transferir(codigo_cliente_remetente, codigo_conta_remetente, codigo_cliente_destinatario, codigo_conta_destinatario, valor_transferencia):
+    try:
+        saldo_remetente = dados_clientes[codigo_cliente_remetente]['contas'][codigo_conta_remetente]
+        saldo_destinatario = dados_clientes[codigo_cliente_destinatario]['contas'][codigo_conta_destinatario]
+
+        if saldo_remetente >= valor_transferencia and valor_transferencia > 0:
+            dados_clientes[codigo_cliente_remetente]['contas'][codigo_conta_remetente] -= valor_transferencia
+            dados_clientes[codigo_cliente_destinatario]['contas'][codigo_conta_destinatario] += valor_transferencia
+            return True
+        else:
+            print("Transferência não permitida. Saldo insuficiente.")
+            return False
+    except KeyError:
+        print("Cliente, conta remetente ou conta destinatário não encontrados.")
+        return False
+
